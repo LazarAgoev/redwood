@@ -1,4 +1,3 @@
-
 import Article from 'src/components/Article'
 
 export const QUERY = gql`
@@ -21,10 +20,11 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ articles }) => {
-  return articles.map((article) => (
-    <Article key={article.id} article={article} />
-
-
-  ))
-
+  return (
+    <>
+      {articles.map((article) => (
+        <Article key={article.id} article={article} />
+      ))}
+    </>
+  )
 }
