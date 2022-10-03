@@ -1,7 +1,5 @@
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useRef } from 'react'
-import { useEffect } from 'react'
-
-import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
   Label,
@@ -10,9 +8,10 @@ import {
   FieldError,
   Submit,
 } from '@redwoodjs/forms'
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
+import { useEffect } from 'react'
 
 const SignupPage = () => {
   const { isAuthenticated, signUp } = useAuth()
@@ -24,9 +23,9 @@ const SignupPage = () => {
   }, [isAuthenticated])
 
   // focus on email box on page load
-  const usernameRef = useRef(null)
+  const usernameRef = useRef()
   useEffect(() => {
-    usernameRef.current?.focus()
+    usernameRef.current.focus()
   }, [])
 
   const onSubmit = async (data) => {
@@ -46,7 +45,7 @@ const SignupPage = () => {
     <>
       <MetaTags title="Signup" />
 
-      <main className="rw-main">
+      <main className="rw-main w-96 mx-auto mt-12">
         <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
@@ -110,7 +109,7 @@ const SignupPage = () => {
               </div>
             </div>
           </div>
-          <div className="rw-login-link">
+          <div className="rw-login-link mt-2 text-center">
             <span>Already have an account?</span>{' '}
             <Link to={routes.login()} className="rw-link">
               Log in!
